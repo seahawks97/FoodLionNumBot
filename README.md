@@ -10,16 +10,4 @@ FLNB browses through a subreddit's comments and searches for a 4- or 5- digit nu
 ## Detailed Explanation
 FLNB heavily relies on PRAW, Python Reddit API Wrapper, to communicate with Reddit and send information. The main function opens and asks for an input, and right now the only options are to run the bot and exit the program (see "To Do"). When it runs, it logs the bot into Reddit using config.py. It looks for the document posts_replied_to.txt for the list of comment IDs that have already been replied to, to prevent duplicate responses. It gets the subreddit and number of requests to make with the Reddit server from the code itself (see "To Do").
 *The rest is just an idea of how I want to approach the rest of the project, as it is still a WIP.*
-The database of PLUs and their associated products are opened if the comment has not already been replied to and contains a number that is 4- or 5- digits long. 
-*Thats all I feel like typing tonight- will update more tomorrow*
-
-## To Do
-1. Make it work
-* Handle underscores being in the fruit name in the dictionary
-* Handle if multiple PLU numbers are in a Reddit comment
-
-2. Add good stuff
-* "Add" function selector
-* "Search" function selector
-* "Delete" function selector
-* Ability to select subreddit and number of requests before actually running the bot
+The database of PLUs and their associated products are opened if the comment has not already been replied to and contains a number that is 4- or 5- digits long. Each number in the comment is stored as an integer in the list comment_keys. For each value in comment_keys, it searches through the dictionary FLNB_dict.txt for a value that mastches it, and puts the corresponding produce item in a list called dict_values. Then, the bot replies a single comment that says "Fruit1. Fruit2..." in that format for as many PLUs are detected in the comment. The comment ID is stored in posts_replied_to.txt to prevent duplicate responses.
