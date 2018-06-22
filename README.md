@@ -18,6 +18,7 @@ The database of PLUs and their associated products are opened if the comment has
 * Handle underscores being in the fruit name in the dictionary
 * Handle if multiple PLU numbers are in a Reddit comment
 
+2. Add good stuff
 * "Add" function selector
 * "Search" function selector
 * "Delete" function selector
