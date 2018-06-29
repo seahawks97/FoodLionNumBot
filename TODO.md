@@ -8,3 +8,5 @@
 - [ ] "Search" function selector
 - [ ] "Delete" function selector
 - [ ] Ability to select subreddit and number of requests before actually running the bot
+3. Update GitHub
+- [ ] "Usage" in README.md -- How to use the bot
