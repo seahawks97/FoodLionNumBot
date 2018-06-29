@@ -69,33 +69,39 @@ def run_bot(r, posts_replied_to):
     print("Grabbing comments...")
     comments_list = subreddit.comments(limit=10)  # Put number of requests  here
 
+    # Opens the dictionary
     with open("FLNB_dict.txt", "r") as db:
-        mydict = dict(csv.reader(db))           # Opens the dictionary
+        mydict = dict(csv.reader(db))
 
     for comment in comments_list:
         if len(comment.body) < 4 or comment in posts_replied_to:
             continue
         else:
-            comment_keys = list(int(s) for s in comment.split() if s.isdigit() )        #
+            comment_keys = []
+            split_comment = comment.body.split()
+            for i in split_comment:
+                if i.isdigit():
+                    comment_keys.append(i)      # In this case, 'i' is a string of numbers
 
-        # Finds a comment not replied to, and contains a 4 or 5 digit number
-        if comment not in posts_replied_to and comment_keys != []:
-            print("Numbers found in comment! Comment ID: " + comment.id)
-            for i in comment_keys:
-                dict_val = mydict.get(i)
-                dict_values = []
-                dict_values = dict_values.append(dict_val)
-                #comment.reply(dict_values)                                 # Comment out for editing
+            dict_values = []
+            if comment_keys != []:
+                print("Numbers found in comment! Comment ID: " + comment.id)
+                for j in comment_keys:
+                    dict_values.append(mydict.get(j))
 
-            # Appends comment ID to post_replied_to.txt
-            with open("posts_replied_to.txt", "a") as f:
-                f.write(comment.id + "\n")
+                if len(dict_values) == 1:
+                    reply_num = 1
+                    # comment.reply(dict_values + ".")                    # Comment out for editing to prevent replies
+                else:
+                    string_reply = ""
+                    for k in dict_values:
+                        string_reply += dict_values[k] + ". "
+                    # comment.reply(string_reply)                         # Comment out for editing to prevent replies
 
-
-def txt_to_dict():
-    with open("FLNB_dict.txt", "f") as db:
-        mydict = dict(csv.reader(db))
-    return mydict
+                # Appends comment ID to post_replied_to.txt
+                with open("posts_replied_to.txt", "a") as f:
+                    f.write(comment.id + "\n")
+                f.close()
 
 
 main()
