@@ -64,10 +64,23 @@ def get_saved_comments():
 
 
 def run_bot(r, posts_replied_to):
+    user_subr = input("What subreddit would you like to operate on? (Recommended: test) /r/")
     print("Grabbing subreddit...")
-    subreddit = r.subreddit("test")  # Put subreddit here
+    subreddit = r.subreddit(user_subr)  # Put subreddit here
+    while True:
+        user_lim = input("How many comments would you like to test? (Recommended: 10-25) ")
+        try:
+            user_lim = int(user_lim)
+        except ValueError:
+            print("Please type a number.")
+            continue
+        if 0 <= user_lim <= 200:
+            break
+        else:
+            print("Please type a valid number in the range 0-200.")
+
     print("Grabbing comments...")
-    comments_list = subreddit.comments(limit=10)  # Put number of requests  here
+    comments_list = subreddit.comments(limit=user_lim)  # Put number of requests  here
 
     # Opens the dictionary
     with open("FLNB_dict.txt", "r") as db:
@@ -96,10 +109,6 @@ def run_bot(r, posts_replied_to):
                     print("No PLUs detected in comment.\n")
                     continue
 
-                # All below needs to be figured out if it is to be indented
-                # string_reply should be able to match if there is 1 or multiple PLUs
-                # if string_Reply is blank, don't bother replying.
-
                 elif num_vals == 1:
                     new_reply = dict_values[0].capitalize()
                     new_reply += "."
@@ -112,7 +121,7 @@ def run_bot(r, posts_replied_to):
                         s = s.capitalize()
                         s = s.replace("_", " ")
                         string_reply += s + ". "
-                    #comment.reply(string_reply)                     # Comment out for editing
+                    comment.reply(string_reply)                     # Comment out for editing
                     print("Successful reply!\n")
 
                 # Appends comment ID to post_replied_to.txt
