@@ -7,6 +7,6 @@
 - [ ] "Add" function selector
 - [ ] "Search" function selector
 - [ ] "Delete" function selector
-- [ ] Ability to select subreddit and number of requests before actually running the bot via input function
+- [x] Ability to select subreddit and number of requests before actually running the bot via input function (2 July 2018)
 3. Update GitHub
 - [ ] "Usage" in README.md -- How to use the bot
