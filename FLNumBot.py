@@ -1,9 +1,8 @@
-# FoodLionNumBot (FLNB) v0.1 by /u/Ndog1000
+# FoodLionNumBot (FLNB) v0.1
 # Project Started: 12 June 2018
 # Python v3.6.3
 # Finished v0.1: 2 July 2018
-# This version has easy-to-read comments, and extra prints() for easy reading in shell
-#
+# This version has easy-to-read comments, and extra prints() for easy reading
 
 import praw
 import os
@@ -12,7 +11,7 @@ import csv
 
 
 def main():
-    print("Welcome to the FoodLionNumBot by /u/Ndog1000!")
+    print("Welcome to the FoodLionNumBot!")
     while True:
         selection = input_selection()
         if selection == "q":
@@ -42,11 +41,11 @@ def input_selection():
 
 def login_bot():
     print("Logging in...")
-    reddit_name = praw.Reddit(username = config.username,
-                    password = config.password,
-                    client_id = config.client_id,
-                    client_secret = config.client_secret,
-                    user_agent = "Reddit bot: FoodLionNumBot by /u/Ndog1000")
+    reddit_name = praw.Reddit(username = *,
+                    password = *,
+                    client_id = *,
+                    client_secret = *,
+                    user_agent = "")
     print("Reddit username: " + str(reddit_name.user.me()))
     print("Logged in!")
     return reddit_name
